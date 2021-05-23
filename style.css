@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    border: 0;
+}
+
+h1{
+    text-align: center;
+}
+
+.superMercado{
+    border: 2px black solid;
+    width: 90%;
+    height: 500px;
+    margin: 50px 100px;
+    display: flex;
+    
+}
+
+.caja{
+    border: 2px red solid;
+    width: 15%;
+    height: 60%;
+    margin: 70px 84px;
+    
+}
+
+.linea{
+    margin-top: 20px;    
+    border: 1px red solid;
+    
+
+}
+
+.cliente{
+    height: 80px;
+    width: 80px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 25px 80px;
+    
+}
+
+.cajero{
+    height: 80px;
+    width: 80px;
+    background-color: blue;
+    border-radius: 50%;
+    display: inline-block;   
+    margin: 30px 80px;
+
+}
