@@ -1,54 +1,178 @@
 
 let botonIniciar = document.getElementById("botonIniciar");
 let marco = document.getElementById("superMercado");
+let mostrarClientes = document.getElementById("mostrarClientes");
+let divCaja1 = document.getElementById("caja1");
+let divCaja2 = document.getElementById("caja2");
+let divCaja3 = document.getElementById("caja3");
+let divCaja4 = document.getElementById("caja4");
 
-const productos = () => {
-    vector = []
-    max = 100;
-    min = 1;
-    for (let i = 0; i < 100; i++) {
-        vector[i] = Math.floor(Math.random() * (max - min)) + min;
-    }
-    return vector
-}
+// variables temporales
 
-const tiempoLlegada = () => {
-    vector = []
-    media = 5;
-    for (let i = 0; i < 100; i++) {
-        vector[i] = Math.floor(Math.random() * media);
-    }
-    return vector
+let caja1 = true;
+let caja2 = true;
+let caja3 = true;
+let caja4 = true;
+
+
+// vector de tiempo de llegada
+let vectorLlegada = []
+let vectorProductos = []
+const mediaLlegada = 5;
+const tamano = 100;
+const max = 100;
+const min = 1;
+for (let i = 0; i < tamano; i++) {
+    vectorLlegada[i] = Math.floor(Math.random() * mediaLlegada);
+    vectorProductos[i] = Math.floor(Math.random() * (max - min)) + min;
 }
 
 const presionarBoton = () => {
-
-    // console.log(productos())
-    console.log(tiempoLlegada())
+    
+    // console.log(vectorLlegada)
+    console.log(vectorProductos)
     
     llegadaClientes();
     
 };
 
-const resolveAfterxSeconds = (x) => {
+const resolveAfterxSeconds = (x,i) => {
     return new Promise(resolve => {
         setTimeout(() => {
-            resolve(x);
-        }, x * 500);
+            resolve(vectorProductos[i]);
+        }, x * 1000);
     });
 }
 
 const llegadaClientes = async() => {
-    let t = tiempoLlegada();
-    // for (let i = 0; i < t.length; i++) {
-    //     console.log("llegada del vector", t[i] )        
-    //     const result = await resolveAfterxSeconds(t[i]);
-    //     console.log(result);
-    // }    
+    let cont = 0;
+    for(const element of vectorLlegada) {
+        let numProduct = await resolveAfterxSeconds(element, cont);
+        let backupMostrarCliente = mostrarClientes.innerHTML;
+        mostrarClientes.innerHTML += `<div class="clientesCola">${numProduct}</div>`        
+        cont++;
 
-    for(const element of t) {
-        let result = await resolveAfterxSeconds(element);
-        console.log(result);
+        let seguir = true;
+
+        while (seguir == true) {
+
+            console.log("entro")
+
+            if (numProduct > 10) {
+
+                // CAJA GENERAL
+    
+                if (caja1) {
+
+                    seguir = false;
+                    caja1 = false;      
+                    setTimeout(() =>{
+                        // mostrarClientes.innerHTML = backupMostrarCliente; 
+                        divCaja1.innerHTML = `<div class="cliente">${numProduct}</div>`;                    
+                    }, 1000)
+                    
+                    // esperar el tiempo del mercado
+                    let timeCaja = numProduct * 100
+                    console.log("timeCaja",timeCaja)                  
+    
+                    setTimeout(()=>{
+                        console.log(numProduct)
+                    }, timeCaja + 1000)
+    
+                    setTimeout(()=>{
+                        divCaja1.innerHTML = '';
+                        caja1 = true;
+                    }, timeCaja + 2000)
+
+                    
+                    
+                }else if (caja2){
+                    seguir = false;
+                    caja2 = false;      
+                    setTimeout(() =>{
+                        // mostrarClientes.innerHTML = backupMostrarCliente; 
+                        divCaja2.innerHTML = `<div class="cliente">${numProduct}</div>`;                    
+                    }, 1000)
+                    
+                    // esperar el tiempo del mercado
+                    let timeCaja = numProduct * 100
+                    console.log("timeCaja",timeCaja)                  
+    
+                    setTimeout(()=>{
+                        console.log(numProduct)
+                    }, timeCaja + 1000)
+    
+                    setTimeout(()=>{
+                        divCaja2.innerHTML = '';
+                        caja2 = true;
+                    }, timeCaja + 2000)
+                    
+    
+                }else if (caja3){
+
+                    seguir = false;
+                    caja3 = false;      
+                    setTimeout(() =>{
+                        // mostrarClientes.innerHTML = backupMostrarCliente; 
+                        divCaja3.innerHTML = `<div class="cliente">${numProduct}</div>`;                    
+                    }, 1000)
+                    
+                    // esperar el tiempo del mercado
+                    let timeCaja = numProduct * 100
+                    console.log("timeCaja",timeCaja)                  
+    
+                    setTimeout(()=>{
+                        console.log(numProduct)
+                    }, timeCaja + 1000)
+    
+                    setTimeout(()=>{
+                        divCaja3.innerHTML = '';
+                        caja3 = true;
+                    }, timeCaja + 2000)
+                    
+                }else{
+                    
+                    seguir = true;    
+                }   
+    
+                
+            }else{
+    
+                // CAJA RAPIDA
+    
+                if (caja4) {
+
+                    seguir = false;
+                    caja4 = false;      
+                    setTimeout(() =>{
+                        // mostrarClientes.innerHTML = backupMostrarCliente; 
+                        divCaja4.innerHTML = `<div class="cliente">${numProduct}</div>`;                    
+                    }, 1000)
+                    
+                    // esperar el tiempo del mercado
+                    let timeCaja = numProduct * 100
+                    console.log("timeCaja",timeCaja)                  
+    
+                    setTimeout(()=>{
+                        console.log(numProduct)
+                    }, timeCaja + 1000)
+    
+                    setTimeout(()=>{
+                        divCaja4.innerHTML = '';
+                        caja4 = true;
+                    }, timeCaja + 2000)
+                    
+                    
+                }else{
+                    seguir = true;
+                }
+            
+            }
+
+        
+
+            
+        }
     };
 }
 

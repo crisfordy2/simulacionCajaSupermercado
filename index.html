@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,56 +8,88 @@
     <link rel="stylesheet" href="style.css">
     <title>Super Mercado</title>
 </head>
+
 <body>
     <h1>Super Mercado</h1>
 
-    <button id="botonIniciar">Iniciar aqui</button>
+    <button id="botonIniciar" class="boton">Iniciar aqui</button>
 
     <div id="superMercado" class="superMercado">
 
-        <div id="caja1" class="caja">
-            <div class="cliente">
-                <!-- <h1>numero de productos</h1> -->
+        <!-- CAJA GENERAL -->
+        <div class="contenedorGeneral">
+
+            <div class="colaGeneral">
+                <h2 class="subtitulo">Caja general</h2>
+                <h2>Cola</h2>
+                <div id="mostrarClientes" class="mostrarClientes"></div>
             </div>
-            <div class="linea">
+
+            <div class="cajasGeneral">
+
+                <div id="caja1" class="caja">
+                    <!-- <div class="cliente">
+                        
+                    </div> -->
+                    <div class="linea">
+                    </div>
+                    <div class="cajero">
+                    </div>
+                </div>
+
+
+                <div id="caja2" class="caja">
+                    <div class="cliente">
+                    </div>
+                    <div class="linea">
+                    </div>
+                    <div class="cajero">
+                    </div>
+                </div>
+
+
+                <div id="caja3" class="caja">
+                    <div class="cliente">
+                    </div>
+                    <div class="linea">
+                    </div>
+                    <div class="cajero">
+                    </div>
+                </div>
+
             </div>
-            <div class="cajero">
-            </div>
+
         </div>
+        <!-- FIN GENERAL -->
 
 
-        <div id="caja2" class="caja">
-            <div class="cliente">
+        <!-- CAJA RAPIDA -->
+        <div class="contenedorRapida">
+
+            <div class="colaRapida">
+                <h2 class="subtitulo">Caja Rapida</h2>
+                <h2>Cola</h2>
+                <!-- <div id="mostrarClientes"></div> -->
             </div>
-            <div class="linea">
+
+            <div class="cajaGeneral">
+                <div id="caja4" class="cajaR">
+                    <div class="cliente">
+                    </div>
+                    <div class="linea">
+                    </div>
+                    <div class="cajero">
+                    </div>
+                </div>
             </div>
-            <div class="cajero">
-            </div>
+
         </div>
-
-
-        <div id="caja3" class="caja">
-            <div class="cliente">
-            </div>
-            <div class="linea">
-            </div>
-            <div class="cajero">
-            </div>
-        </div>
-
-
-        <div id="caja4" class="caja">
-            <div class="cliente">
-            </div>
-            <div class="linea">
-            </div>
-            <div class="cajero">
-            </div>
-        </div>
+        <!-- FIN RAPIDA -->
 
 
     </div>
-    
+
     <script src="tienda.js"></script>
 </body>
+
 </html>
