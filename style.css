@@ -50,10 +50,8 @@ h1{
     
 }
 
-.linea{
-    margin-top: 20px;    
-    border: 1px red solid;
-    
+.linea{    
+    border: 1px red solid;   
 
 }
 
@@ -73,8 +71,7 @@ h1{
     width: 55px;
     background-color: blue;
     border-radius: 50%;
-    display: inline-block;   
-    margin: 30px 80px;
+    display: inline-block;       
 }
 
 .mostrarClientes{
