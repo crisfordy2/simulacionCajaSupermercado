@@ -2,6 +2,7 @@
 let botonIniciar = document.getElementById("botonIniciar");
 let marco = document.getElementById("superMercado");
 let mostrarClientes = document.getElementById("mostrarClientes");
+let mostrarClientes2 = document.getElementById("mostrarClientes2");
 let divCaja1 = document.getElementById("caja1");
 let divCaja2 = document.getElementById("caja2");
 let divCaja3 = document.getElementById("caja3");
@@ -18,9 +19,9 @@ let caja4 = true;
 // vector de tiempo de llegada
 let vectorLlegada = []
 let vectorProductos = []
-const mediaLlegada = 2;
-const tamano = 100;
-const max = 100;
+const mediaLlegada = 5;
+const tamano = 90;
+const max = 90;
 const min = 1;
 for (let i = 0; i < tamano; i++) {
     vectorLlegada[i] = Math.floor(Math.random() * mediaLlegada);
@@ -30,9 +31,10 @@ for (let i = 0; i < tamano; i++) {
 const presionarBoton = () => {
     
     console.log(vectorLlegada)
-    console.log(vectorProductos)
+    // console.log(vectorProductos)
     
     llegadaClientes();
+    llegadaClientes2();
     
 };
 
@@ -46,12 +48,23 @@ const resolveAfterxSeconds = (x,i) => {
 
 const promesa2 = () => {
     return new Promise(resolve => {
-        setTimeout(() => {
-            console.log("primero la promesa")
+        setTimeout(() => {            
             resolve();
-        },500);
+        },1000);
     });
 }
+
+const llegadaClientes2 = async() => {
+    let cont = 0;    
+    for(const element of vectorLlegada) {
+        let numProduct = await resolveAfterxSeconds(element, cont);
+        // let backupMostrarCliente = mostrarClientes.innerHTML;        
+        mostrarClientes2.innerHTML += `<div class="clientesCola">${numProduct}</div>`        
+        cont++;
+    }
+}     
+
+
 
 
 
@@ -60,6 +73,8 @@ const llegadaClientes = async() => {
     for(const element of vectorLlegada) {
         let numProduct = await resolveAfterxSeconds(element, cont);
         let backupMostrarCliente = mostrarClientes.innerHTML;
+
+        // la muestra de la cola ya no va aqui
         mostrarClientes.innerHTML += `<div class="clientesCola">${numProduct}</div>`        
         cont++;
 
@@ -79,13 +94,13 @@ const llegadaClientes = async() => {
                     seguir = false;
                     caja1 = false;      
                     setTimeout(() =>{
-                        mostrarClientes.innerHTML = backupMostrarCliente; 
+                        // mostrarClientes.innerHTML = backupMostrarCliente; 
                         // mostrarClientes.innerHTML = ''; 
                         divCaja1.innerHTML = `<div class="cliente">${numProduct}</div>`;                    
                     }, 1000)
                     
                     // esperar el tiempo del mercado
-                    let timeCaja = numProduct * 100
+                    let timeCaja = numProduct * 500
                     console.log("timeCaja",timeCaja)                  
     
                     setTimeout(()=>{
@@ -103,13 +118,13 @@ const llegadaClientes = async() => {
                     seguir = false;
                     caja2 = false;      
                     setTimeout(() =>{
-                        mostrarClientes.innerHTML = backupMostrarCliente; 
+                        // mostrarClientes.innerHTML = backupMostrarCliente; 
                         // mostrarClientes.innerHTML = ''; 
                         divCaja2.innerHTML = `<div class="cliente">${numProduct}</div>`;                    
                     }, 1000)
                     
                     // esperar el tiempo del mercado
-                    let timeCaja = numProduct * 100
+                    let timeCaja = numProduct * 500
                     console.log("timeCaja",timeCaja)                  
     
                     setTimeout(()=>{
@@ -127,13 +142,13 @@ const llegadaClientes = async() => {
                     seguir = false;
                     caja3 = false;      
                     setTimeout(() =>{
-                        mostrarClientes.innerHTML = backupMostrarCliente; 
+                        // mostrarClientes.innerHTML = backupMostrarCliente; 
                         // mostrarClientes.innerHTML = ''; 
                         divCaja3.innerHTML = `<div class="cliente">${numProduct}</div>`;                    
                     }, 1000)
                     
                     // esperar el tiempo del mercado
-                    let timeCaja = numProduct * 100
+                    let timeCaja = numProduct * 500
                     console.log("timeCaja",timeCaja)                  
     
                     setTimeout(()=>{
@@ -160,13 +175,13 @@ const llegadaClientes = async() => {
                     seguir = false;
                     caja4 = false;      
                     setTimeout(() =>{
-                        mostrarClientes.innerHTML = backupMostrarCliente; 
+                        // mostrarClientes.innerHTML = backupMostrarCliente; 
                         // mostrarClientes.innerHTML = ''; 
                         divCaja4.innerHTML = `<div class="cliente">${numProduct}</div>`;                    
                     }, 1000)
                     
                     // esperar el tiempo del mercado
-                    let timeCaja = numProduct * 100
+                    let timeCaja = numProduct * 500
                     console.log("timeCaja",timeCaja)                  
     
                     setTimeout(()=>{
@@ -181,8 +196,7 @@ const llegadaClientes = async() => {
                     
                 }else{
                     await promesa2();
-                    seguir = true;
-                    console.log("esta esperando");
+                    seguir = true;                    
                 }
             
             }   
