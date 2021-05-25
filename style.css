@@ -102,3 +102,8 @@ h1{
 .boton:hover{
     opacity: 0.5;
 }
+
+.opciones{
+    display: flex;
+    padding-left: 120px;
+}

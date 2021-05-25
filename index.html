@@ -12,7 +12,21 @@
 <body>
     <h1>Super Mercado</h1>
 
-    <button id="botonIniciar" class="boton">Iniciar aqui</button>
+    <div class="opciones">
+
+        
+        <button id="botonIniciar" class="boton">Iniciar aqui</button>
+
+        <h3>Horas de simulacion:</h3>
+        
+        <select name="horas" id="horas">
+            <option value="1" selected>1 Hora</option>
+            <option value="2" >2 Horas</option>
+            <option value="3">3 Horas</option>
+            <option value="4">4 Horas</option>
+        </select>
+        
+    </div>
 
     <div id="superMercado" class="superMercado">
 
@@ -20,7 +34,7 @@
         <div class="contenedorGeneral">
 
             <div class="colaGeneral">
-                <h2 class="subtitulo">Caja general</h2>
+                <h2 class="subtitulo" id="subtitulo">Caja general</h2>
                 <h2>Cola</h2>
                 <div id="mostrarClientes2" class="mostrarClientes"></div>
                 <div id="mostrarClientes" class="mostrarClientes"></div>
@@ -28,8 +42,10 @@
 
             <div class="cajasGeneral">
 
-                <div id="caja1" class="caja">
-                    
+                <div  class="caja">
+                    <div id="caja1">
+
+                    </div>
                     <div class="linea">
                     </div>
                     <div class="cajero">
@@ -83,6 +99,11 @@
         <!-- FIN RAPIDA -->
 
 
+    </div>
+
+
+    <div class="resultados">
+        <h2>resultados</h2>
     </div>
 
     <script src="tienda.js"></script>
