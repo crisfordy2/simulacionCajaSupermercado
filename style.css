@@ -9,9 +9,9 @@ h1{
 
 .superMercado{
     border: 2px black solid;
-    width: 90%;
+    width: 95%;
     height: 700px;
-    margin: 50px 100px;
+    margin: 50px 50px;
     display: flex;
     
 }
@@ -21,7 +21,7 @@ h1{
 }
 
 .contenedorRapida{
-    width: 25%;
+    width: 25%;    
 }
 
 .cajasGeneral{
@@ -36,23 +36,24 @@ h1{
 
 .caja{
     border: 2px red solid;
-    width: 17%;
-    height: 60%;
+    width: 13%;
+    height: 170px;
     margin: 70px 84px;
     
 }
 
 .cajaR{
     border: 2px red solid;
-    width: 50%;
-    height: 60%;
+    width: 40%;
+    height: 170px;
     margin: 70px 84px;
     
 }
 
 .linea{    
-    border: 1px red solid;   
-
+    border: 1px red solid;
+    position: relative;
+    top: 35px;    
 }
 
 .cliente{
@@ -60,10 +61,14 @@ h1{
     width: 55px;
     background-color: black;
     border-radius: 50%;
-    display: inline-block;
-    margin: 25px 80px;
+    display: inline-block;    
     color: blanchedalmond;
-    text-align: center;    
+    text-align: center;
+    position: relative;    
+    top: 20px;     
+    left: 55px;
+    padding-bottom: 0;    
+    margin-bottom: 0;
 }
 
 .cajero{
@@ -71,11 +76,14 @@ h1{
     width: 55px;
     background-color: blue;
     border-radius: 50%;
-    display: inline-block;       
+    display: inline-block;  
+    position: relative;
+    top: 50px;       
+    left: 55px;
 }
 
 .mostrarClientes{
-    width: 90%;
+    width: 95%;
     border: 1px black solid;
     height: 55px;
 }

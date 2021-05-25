@@ -3,6 +3,7 @@ let botonIniciar = document.getElementById("botonIniciar");
 let marco = document.getElementById("superMercado");
 let mostrarClientes = document.getElementById("mostrarClientes");
 let mostrarClientes2 = document.getElementById("mostrarClientes2");
+let mostrarClientes3 = document.getElementById("mostrarClientes3");
 let horas = document.getElementById("horas");
 let divCaja1 = document.getElementById("caja1");
 let divCaja2 = document.getElementById("caja2");
@@ -63,8 +64,11 @@ const llegadaClientes2 = async() => {
     let cont = 0;    
     for(const element of vectorLlegada) {
         let numProduct = await resolveAfterxSeconds(element, cont);
-        // let backupMostrarCliente = mostrarClientes.innerHTML;        
-        mostrarClientes2.innerHTML += `<div class="clientesCola">${numProduct}</div>`        
+        if (numProduct > 10) {
+            mostrarClientes2.innerHTML += `<div class="clientesCola">${numProduct}</div>`;    
+        } else {
+            mostrarClientes3.innerHTML += `<div class="clientesCola">${numProduct}</div>`;    
+        }
         cont++;
     }
 }     
