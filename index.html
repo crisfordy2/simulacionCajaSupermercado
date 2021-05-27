@@ -13,18 +13,8 @@
     <h1>Super Mercado</h1>
 
     <div class="opciones">
-
         
-        <button id="botonIniciar" class="boton">Iniciar aqui</button>
-
-        <h3>Horas de simulacion:</h3>
-        
-        <select name="horas" id="horas">
-            <option value="1" selected>1 Hora</option>
-            <option value="2" >2 Horas</option>
-            <option value="3">3 Horas</option>
-            <option value="4">4 Horas</option>
-        </select>
+        <button id="botonIniciar" class="boton">Iniciar aqui</button>          
         
     </div>
 
@@ -48,6 +38,7 @@
                     <div class="linea">
                     </div>
                     <div class="cajero">
+                        cajero
                     </div>
                 </div>
 
@@ -58,6 +49,7 @@
                     <div class="linea">
                     </div>
                     <div class="cajero">
+                        cajero
                     </div>
                 </div>
 
@@ -68,6 +60,7 @@
                     <div class="linea">
                     </div>
                     <div class="cajero">
+                        cajero
                     </div>
                 </div>
 
@@ -81,8 +74,8 @@
         <div class="contenedorRapida">
 
             <div class="colaRapida">
-                <h2 class="subtitulo">Caja Rapida</h2>
-                <h2>Cola max 10</h2>
+                <h2 class="subtitulo">Caja Rapida (max 10)</h2>
+                <h2>Cola</h2>
                 <div id="mostrarClientes3" class="mostrarClientes"></div>
             </div>
 
@@ -92,6 +85,7 @@
                     <div class="linea">
                     </div>
                     <div class="cajero">
+                        cajero
                     </div>
                 </div>
             </div>
@@ -105,6 +99,10 @@
 
     <div class="resultados">
         <h2>resultados</h2>
+        <h3 id="resultadoG">numero de clientes cola general: </h3>
+        <h3 id="resultadoR">numero de clientes cola rapida: </h3>
+        <h3 id="colaR">tiempo espera cola rapida: </h3>
+        <h3 id="colaG">tiempo espera cola general: </h3>
     </div>
 
     <script src="tienda.js"></script>
