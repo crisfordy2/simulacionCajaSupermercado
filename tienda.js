@@ -27,16 +27,17 @@ console.log(numeroHoras)
 
 
 // Tiempo:
-const tiempoProducto = 20 / numeroHoras; // en este momento esta en 50    
-const tiempoAnimacion = 200 / numeroHoras; // estaba en 500
-const tiempoEntrePersonas = 200 * numeroHoras; // estaba en 500
+const tiempoProducto = 20 / numeroHoras; // en este momento esta en 20 
+const tiempoAnimacion = 150 / numeroHoras; // estaba en 200
+const tiempoEntrePersonas = 200 / (numeroHoras * 0.9); //0.9 - 200
 
 
+// const numeroClientesG = 30;
 const numeroClientesG = Math.floor(Math.random() * (110 - 80)) + 80; // media 95 clientes por hora
 const clientesTotalesG = numeroHoras * numeroClientesG;
 let vectorLlegada = [];
 let vectorProductos = [];
-const mediaLlegada = 6;
+const mediaLlegada = 6.5; // estaba en 6
 const maxProductos = 100;
 const min = 11;
 for (let i = 0; i < clientesTotalesG; i++) {
@@ -46,13 +47,13 @@ for (let i = 0; i < clientesTotalesG; i++) {
 
 // cola rapida
 
-// const restaR = 14; // rango 23 - 14
-const restaR = Math.floor(Math.random() * (23 - 14)) + 14
+// rango 23 - 14
+const restaR = Math.floor(Math.random() * (32 - 28)) + 28
 const numeroClientesR = numeroClientesG - restaR;
 const clientesTotalesR = numeroHoras * numeroClientesR;
 let vectorLlegadaR = []
 let vectorProductosR = []
-const mediaLlegadaR = 7;
+const mediaLlegadaR = 9; // estaba en 7
 for (let i = 0; i < clientesTotalesR; i++) {
     vectorLlegadaR[i] = Math.floor(Math.random() * mediaLlegadaR);
     vectorProductosR[i] = Math.floor(Math.random() * (11 - 1)) + 1;
@@ -103,14 +104,20 @@ const promesa2 = () => {
     });
 }
 
-var sumaProductosR = 0;
+
+var TiempoLlegadaG = [];
+var TiempoSalidaG = [];
+var TiempoLlegadaR = [];
+var TiempoSalidaR = [];
+
 
 const colaGeneral = async () => {
     let cont = 0;
     for (const element of vectorLlegada) {
         let numProduct = await resolveAfterxSeconds(element, cont);        
-        mostrarClientes2.innerHTML += `<div class="clientesCola">${numProduct}</div>`;
-        sumaProductosR += numProduct;        
+        mostrarClientes2.innerHTML += `<div class="clientesCola">${numProduct}</div>`;          
+        let llegadaCliente = Date.now(); 
+        TiempoLlegadaG[cont] = llegadaCliente;                  
         cont++;
     }
 }
@@ -119,7 +126,9 @@ const colaRapida = async () => {
     let cont = 0;
     for (const element of vectorLlegadaR) {
         let numProduct = await resolveRapida(element, cont);
-        mostrarClientes3.innerHTML += `<div class="clientesCola">${numProduct}</div>`;            
+        mostrarClientes3.innerHTML += `<div class="clientesCola">${numProduct}</div>`;         
+        let llegadaCliente = Date.now(); 
+        TiempoLlegadaR[cont] = llegadaCliente;                     
         cont++;
     }
 }
@@ -135,6 +144,7 @@ const llegadaClientes = async () => {
         let numProduct = await resolveAfterxSeconds(element, cont);
 
         let seguir = true;
+        // console.log("cont", cont, "producto", numProduct)
 
         while (seguir == true) {
 
@@ -152,15 +162,19 @@ const llegadaClientes = async () => {
                 }, tiempoAnimacion)
 
                 // esperar el tiempo del mercado
-                let timeCaja = numProduct * tiempoProducto                
+                let timeCaja = numProduct * tiempoProducto
+
+                let salidaCliente = Date.now();
+                TiempoSalidaG[cont] = salidaCliente;                                    
 
                 setTimeout(() => {
                 }, timeCaja + tiempoAnimacion)
 
+                // salida de cliente
                 setTimeout(() => {
                     divCaja1.innerHTML = '';
-                    caja1 = true;
-                }, timeCaja + (tiempoAnimacion/2))
+                    caja1 = true;                                                            
+                }, timeCaja + (tiempoAnimacion*2))  // estaba /2
 
 
 
@@ -175,13 +189,16 @@ const llegadaClientes = async () => {
                 // esperar el tiempo del mercado
                 let timeCaja = numProduct * tiempoProducto                
 
+                let salidaCliente = Date.now();
+                TiempoSalidaG[cont] = salidaCliente;
+
                 setTimeout(() => {
                 }, timeCaja + tiempoAnimacion)
 
                 setTimeout(() => {
                     divCaja2.innerHTML = '';
-                    caja2 = true;
-                }, timeCaja + (tiempoAnimacion/2))
+                    caja2 = true;                    
+                }, timeCaja + (tiempoAnimacion*2))
 
 
             } else if (caja3) {
@@ -196,13 +213,16 @@ const llegadaClientes = async () => {
                 // esperar el tiempo del mercado
                 let timeCaja = numProduct * tiempoProducto                
 
+                let salidaCliente = Date.now();
+                TiempoSalidaG[cont] = salidaCliente;
+
                 setTimeout(() => {
                 }, timeCaja + tiempoAnimacion)
 
                 setTimeout(() => {
                     divCaja3.innerHTML = '';
-                    caja3 = true;
-                }, timeCaja + (tiempoAnimacion/2))
+                    caja3 = true;                    
+                }, timeCaja + (tiempoAnimacion*2))
 
             } else {
                 await promesa2();
@@ -225,10 +245,12 @@ const llegadaClientesR = async () => {
         let numProduct = await resolveRapida(element, cont);
 
         let seguir = true;
+        console.log("cont", cont, "producto", numProduct)
 
         while (seguir == true) {
 
             // CAJA RAPIDA
+
 
             if (caja4) {
 
@@ -240,15 +262,18 @@ const llegadaClientesR = async () => {
                 }, tiempoAnimacion)
 
                 // esperar el tiempo del mercado
-                let timeCaja = numProduct * tiempoProducto                
+                let timeCaja = numProduct * tiempoProducto  
+                
+                let salidaCliente = Date.now();
+                TiempoSalidaR[cont] = salidaCliente; 
 
                 setTimeout(() => {
                 }, timeCaja + tiempoAnimacion)
 
                 setTimeout(() => {
                     divCaja4.innerHTML = '';
-                    caja4 = true;
-                }, timeCaja + (tiempoAnimacion/2))
+                    caja4 = true;                    
+                }, timeCaja + (tiempoAnimacion*2))
 
 
             } else {
@@ -267,8 +292,33 @@ const llegadaClientesR = async () => {
 const resultado = ()=>{
     resultadoR.innerHTML += numeroClientesR;
     resultadoG.innerHTML += numeroClientesG;
-    colaG.innerHTML += (sumaProductosR / numeroClientesR);
-    colaR.innerHTML += sumaProductos;
+    
+    let suma = 0
+    for (let i = 0; i < TiempoLlegadaG.length; i++) {        
+        suma += (TiempoSalidaG[i] - TiempoLlegadaG[i])
+    }
+    suma = suma / TiempoLlegadaG.length;
+
+
+    let suma2 = 0
+    for (let i = 0; i < TiempoLlegadaR.length; i++) {        
+        console.log(i,". ",TiempoSalidaR[i] , " - ", TiempoLlegadaR[i])        
+        suma2 += (TiempoSalidaR[i] - TiempoLlegadaR[i])
+    }
+    suma2 = suma2 / TiempoLlegadaR.length;
+
+    console.log("suma", suma,"   " ,suma2)
+
+    colaG.innerHTML += `${suma/1000} minutos`;
+    colaR.innerHTML += `${suma2/1000} minutos`;
+
+
+    console.log("promedio",suma)
+    console.log("promedio2",suma2)
+    // console.log("tsg",TiempoSalidaG)
+    // console.log("tlg",TiempoLlegadaG)
+    // console.log(TiempoSalidaR)
+    // console.log(TiempoLlegadaR)
 }
 
 
