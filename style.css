@@ -117,3 +117,23 @@ h1{
     display: flex;
     padding-left: 120px;
 }
+
+.tabla{
+    display: flex;
+}
+
+.contTablas{
+    width: 50%;
+    text-align: center;
+    border: 2px solid red;
+    padding: 20px;
+}
+
+.linea2{
+    border: 1px red solid;
+    width: 100%;
+    padding: 2px 0;
+    /* position: relative;
+    top: 35px;     */
+
+}

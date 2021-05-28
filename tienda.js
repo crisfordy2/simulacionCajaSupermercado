@@ -45,15 +45,14 @@ for (let i = 0; i < clientesTotalesG; i++) {
     vectorProductos[i] = Math.floor(Math.random() * (maxProductos - min)) + min;
 }
 
-// cola rapida
-
+// COLA RAPIDA
 // rango 23 - 14
-const restaR = Math.floor(Math.random() * (32 - 28)) + 28
+const restaR = Math.floor(Math.random() * (42 - 32)) + 32
 const numeroClientesR = numeroClientesG - restaR;
 const clientesTotalesR = numeroHoras * numeroClientesR;
 let vectorLlegadaR = []
 let vectorProductosR = []
-const mediaLlegadaR = 9; // estaba en 7
+const mediaLlegadaR = 10; // estaba en 7
 for (let i = 0; i < clientesTotalesR; i++) {
     vectorLlegadaR[i] = Math.floor(Math.random() * mediaLlegadaR);
     vectorProductosR[i] = Math.floor(Math.random() * (11 - 1)) + 1;
@@ -232,7 +231,7 @@ const llegadaClientes = async () => {
 
         }
         cont++;
-        if(cont == numeroClientesG){
+        if(cont == clientesTotalesG){
             resultado();
         }
     };
